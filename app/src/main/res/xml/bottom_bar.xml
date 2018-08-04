@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab
+        id="@+id/navigation_home"
+        icon="@drawable/ic_home_black_24dp"
+        title="@string/title_home"
+        barColorWhenSelected="#4F8DFE" />
+    <tab
+        id="@+id/navigation_dashboard"
+        icon="@drawable/ic_dashboard_black_24dp"
+        title="@string/title_dashboard"
+        barColorWhenSelected="#4F8DFE" />
+    <tab
+        id="@+id/navigation_notifications"
+        icon="@drawable/ic_notifications_black_24dp"
+        title="@string/title_notifications"
+        barColorWhenSelected="#4F8DFE" />
+    <tab
+        id="@+id/navigation_paihang"
+        icon="@drawable/ic_receipt_white_24dp"
+        title="@string/title_ranking"
+        barColorWhenSelected="#4F8DFE" />
+    <!--#6B8E23-->
+</tabs>

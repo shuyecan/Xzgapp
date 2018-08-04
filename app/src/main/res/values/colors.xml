@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4F8DFE</color>
+    <color name="colorPrimaryDark">#4F8DFE</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="Login_back">#4F8DFE</color>
+    <color name="color_tab1">#4F8DFE</color>
+    <color name="color_tab2">#4F8DFE</color>
+    <color name="color_tab3">#4F8DFE</color>
+    <color name="color_tab4">#4F8DFE</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="primary">#4F8DFE</color>
+</resources>
