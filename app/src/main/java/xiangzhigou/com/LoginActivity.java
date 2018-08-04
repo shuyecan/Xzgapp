@@ -148,6 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                        String password = Password_view.getText().toString();
                        if(username.isEmpty()){
                            Username_view.setError("用户名格式不正确");
+                           Login_btn.cancelLoading();
                            return;
                        }
                        if (password.isEmpty()) {
