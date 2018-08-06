@@ -1,6 +1,7 @@
 package xiangzhigou.com;
 
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +12,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -40,7 +42,6 @@ import other.User;
  */
 
 public class Ranksbycompany extends AppCompatActivity{
-    private ImageView img_companyranks;
     private RecyclerView rankRecycler;
     private RankcompanyAp adapter;
     private  String user;
@@ -77,6 +78,9 @@ public class Ranksbycompany extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranksbycompany);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         initView();
         initMyData();
     }
@@ -128,14 +132,12 @@ public class Ranksbycompany extends AppCompatActivity{
 
     private void initView() {
         rankRecycler = findViewById(R.id.rankRecycler);
-        img_companyranks = findViewById(R.id.img_companyranks);
         Toolbar toolbar = findViewById(R.id.toolbar_companyranks);
         setSupportActionBar(toolbar);
         ActionBar actionBar =  getSupportActionBar();
         if(actionBar!=null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        Glide.with(this).load(R.drawable.beit).into(img_companyranks);
     }
 
     @Override

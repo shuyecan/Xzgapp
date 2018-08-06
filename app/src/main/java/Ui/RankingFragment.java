@@ -1,9 +1,7 @@
 package Ui;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,12 +13,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -89,6 +84,13 @@ public class RankingFragment extends android.app.Fragment{
             }
         };
     };
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         if ( fragment_ranking == null) {
@@ -138,6 +140,8 @@ public class RankingFragment extends android.app.Fragment{
         flo_button = getActivity().findViewById(R.id.flo_button);
         initMyData();
     }
+
+
 
 
 /*

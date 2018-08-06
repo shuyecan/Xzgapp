@@ -1,17 +1,17 @@
 package Ui;
 
 
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
 import xiangzhigou.com.R;
 public class HomeFragment extends android.app.Fragment{
 
     private View fragment_home;
-    private TextView fragment_home_tv1;
 
     @Override
     public void onStart() {
@@ -26,11 +26,11 @@ public class HomeFragment extends android.app.Fragment{
     }
 
     private void initMyData() {
-        fragment_home_tv1.setText("hehe");
+
     }
 
     private void initMyView() {
-        fragment_home_tv1 = getActivity().findViewById(R.id.fragment_home_tv);
+
     }
 
     @Override

@@ -3,6 +3,7 @@ package other;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class RankcompanyAp extends RecyclerView.Adapter<RankcompanyAp.ViewHolder
     public void onBindViewHolder(@NonNull  ViewHolder holder , int position) {
         RankbycompanyBeen.ItemsBean dataBean = Datalist.get(position);
         RankbycompanyBeen.ItemsBean.IntegralListBean integralListBean = Integrallist.get(position);
+        Log.d("position========",position+"");
         holder.Tv_itempai.setText(position+1+"");
         holder.Tv_itemname.setText(dataBean.getDepartment()+":"+dataBean.getUsername());
         holder.Tv_itemfen.setText(integralListBean.getCountIntegral()+"");
