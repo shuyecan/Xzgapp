@@ -1,12 +1,14 @@
 package Ui;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -43,15 +45,20 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import other.RankingAp;
 import other.User;
+import xiangzhigou.com.BottomNav;
 import xiangzhigou.com.R;
+import xiangzhigou.com.Ranksbycompany;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class RankingFragment extends android.app.Fragment{
+
+
     private View fragment_ranking;
     private RankingAp adapter;
     private String  user;
     private ImageView img_rank;
+    private FloatingActionButton flo_button;
     private List<Ranking.DataBean> list = new ArrayList<>();
     private List<Ranking.DataBean.IntegralListBean> list2 = new ArrayList<>();
     final RankingFragment.MyHandler handler= new RankingFragment.MyHandler(this);
@@ -128,6 +135,7 @@ public class RankingFragment extends android.app.Fragment{
         }
         img_rank = getActivity().findViewById(R.id.img_rank);
         Glide.with(this).load(R.drawable.beit).into(img_rank);
+        flo_button = getActivity().findViewById(R.id.flo_button);
         initMyData();
     }
 
@@ -182,5 +190,13 @@ public class RankingFragment extends android.app.Fragment{
                     });
                 }
             }).start();
+
+            flo_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), Ranksbycompany.class);
+                    startActivity(intent);
+                }
+            });
     }
 }

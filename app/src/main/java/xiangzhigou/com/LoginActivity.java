@@ -1,5 +1,4 @@
 package xiangzhigou.com;
-import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,12 +13,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewAnimationUtils;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -72,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                             String username = b.getString("username");
                             String password = b.getString("password");
                             String token = b.getString("token");
+                            Log.d("token=============",token);
                             Intent intent = new Intent(activity, BottomNav.class);
                             intent.putExtra("username",username);
                             intent.putExtra("key", 4);
@@ -154,10 +153,12 @@ public class LoginActivity extends AppCompatActivity {
                        if (password.isEmpty()) {
                            Password_view.requestFocus();
                            Password_view.setError("密码为空");
+                           Login_btn.cancelLoading();
                            return;
                        } else if (password.length() < 6) {
                            Password_view.requestFocus();
                            Password_view.setError("密码长度过短");
+                           Login_btn.cancelLoading();
                            return;
                        }
                        Login(username,password);

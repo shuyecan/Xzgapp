@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -69,11 +68,11 @@ public class BottomNav extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar,menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.toolbar,menu);
+//        return true;
+//    }
     private RelativeLayout nav_head;
     private NavigationView nav_view;
     private DrawerLayout mdrawerlayout;
@@ -290,7 +289,6 @@ public class BottomNav extends AppCompatActivity {
                 switch (tabId){
                     case R.id.navigation_home:
                         nav_view.setCheckedItem(R.id.nav_call);
-                        setColor(R.color.color_tab1);
                         if (homeFragment == null) {
                             homeFragment = new HomeFragment();
                             fragmentTransaction.add(R.id.framecontent, homeFragment);
@@ -300,7 +298,6 @@ public class BottomNav extends AppCompatActivity {
                         break;
                     case R.id.navigation_dashboard:
                         nav_view.setCheckedItem(R.id.nav_friend);
-                        setColor(R.color.color_tab2);
                         if (missionFragment == null) {
                             missionFragment = new MissionFragment();
                             fragmentTransaction.add(R.id.framecontent, missionFragment);
@@ -310,7 +307,6 @@ public class BottomNav extends AppCompatActivity {
                         break;
                     case R.id.navigation_notifications:
                         nav_view.setCheckedItem(R.id.nav_location);
-                        setColor(R.color.color_tab3);
                         if (shenpiFragment == null) {
                             shenpiFragment = new ShenpiFragment();
                             fragmentTransaction.add(R.id.framecontent, shenpiFragment);
@@ -320,7 +316,6 @@ public class BottomNav extends AppCompatActivity {
                         break;
                     case R.id.navigation_paihang:
                         nav_view.setCheckedItem(R.id.nav_email);
-                        setColor(R.color.color_tab4);
                         if (rankingFragment == null) {
                             rankingFragment = new RankingFragment();
                             fragmentTransaction.add(R.id.framecontent, rankingFragment);
@@ -332,14 +327,14 @@ public class BottomNav extends AppCompatActivity {
                 fragmentTransaction.commit();
             }
 
-            private void setColor(int color) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Window window = getWindow();
-                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                    window.setStatusBarColor(getResources().getColor(color));
-                    nav_head.setBackgroundColor(getResources().getColor(color));
-                }
-            }
+//            private void setColor(int color) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    Window window = getWindow();
+//                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                    window.setStatusBarColor(getResources().getColor(color));
+//                    nav_head.setBackgroundColor(getResources().getColor(color));
+//                }
+//            }
         });
     }
 //设置默认的Fragment布局
