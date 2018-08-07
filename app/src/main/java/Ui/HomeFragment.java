@@ -4,6 +4,9 @@ package Ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +31,13 @@ public class HomeFragment extends android.app.Fragment{
     }
 
     private void initMyView() {
-
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar_home);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ActionBar actionBar =  ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if(actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.mipmap.mian);
+        }
     }
 
     @Override
