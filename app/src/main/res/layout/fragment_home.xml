@@ -1,9 +1,426 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardView">
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="22dp"
+        android:text="常用工具"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/textView" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="8dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_shenqin"
+        android:id="@+id/img_shenqin" />
+
+    <TextView
+    android:gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignEnd="@+id/img_shenqin"
+    android:layout_alignStart="@+id/img_shenqin"
+    android:layout_below="@+id/img_shenqin"
+    android:text="功分申请"
+        android:id="@+id/textView2" />
+
+    <ImageView
+        android:id="@+id/img_kanban"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/img_shenqin"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/img_shenqin"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_kanban" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignStart="@+id/img_kanban"
+        android:layout_toStartOf="@+id/img_jiangkou"
+        android:gravity="center"
+        android:text="功分看板"
+        android:id="@+id/textView5" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/img_kanban"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/img_kanban"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_jiangkou"
+        android:id="@+id/img_jiangkou" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignStart="@+id/img_jiangkou"
+        android:layout_below="@+id/img_jiangkou"
+        android:layout_toStartOf="@+id/img_choujiang"
+        android:gravity="center"
+        android:text="奖扣记录"
+        android:id="@+id/textView7" />
 
 
-</android.support.v7.widget.RecyclerView>
+    <ImageView
+        android:id="@+id/img_choujiang"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignTop="@+id/img_jiangkou"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/img_jiangkou"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_lotteryactivity" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView7"
+        android:layout_alignEnd="@+id/img_choujiang"
+        android:layout_alignStart="@+id/img_choujiang"
+        android:gravity="center"
+        android:text="抽奖活动" />
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardView"
+        android:layout_alignStart="@+id/cardView"
+       android:layout_alignEnd="@+id/cardView"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="10dp"
+        app:cardElevation="10dp"
+        android:id="@+id/cardView2">
+
+        <RelativeLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            >
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="22dp"
+                android:text="日常汇报"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignStart="@+id/textView11"
+                android:layout_below="@+id/textView11"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_ribao"
+                android:id="@+id/img_ribao" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/img_ribao"
+                android:layout_alignStart="@+id/img_ribao"
+                android:layout_below="@+id/img_ribao"
+                android:gravity="center"
+                android:text="工作日报"
+                android:id="@+id/textView12" />
+
+            <ImageView
+                android:id="@+id/img_zhoubao"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignTop="@+id/img_ribao"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/img_ribao"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_zhoubao" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/img_zhoubao"
+                android:layout_alignStart="@+id/img_zhoubao"
+                android:layout_below="@+id/img_zhoubao"
+                android:gravity="center"
+                android:text="工作周报"
+                android:id="@+id/textView13" />
+
+
+            <ImageView
+                android:id="@+id/img_yuebao"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignTop="@+id/img_zhoubao"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/img_zhoubao"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_yuebao" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView13"
+                android:layout_alignBottom="@+id/textView13"
+                android:layout_alignEnd="@+id/img_yuebao"
+                android:layout_alignStart="@+id/img_yuebao"
+                android:gravity="center"
+                android:text="工作月报" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView3"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardView2"
+        android:layout_alignStart="@+id/cardView2"
+        android:layout_alignEnd="@+id/cardView2"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="20dp"
+        app:cardElevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="22dp"
+                android:text="管理工具"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+
+            <ImageView
+                android:id="@+id/img_shenhe"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignStart="@+id/textView14"
+                android:layout_below="@+id/textView14"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_readnote" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/img_shenhe"
+                android:layout_alignStart="@+id/img_shenhe"
+                android:layout_below="@+id/img_shenhe"
+                android:gravity="center"
+                android:text="查看日报" />
+
+            <ImageView
+                android:id="@+id/img_shenpi"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignTop="@+id/img_shenhe"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/img_shenhe"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_missionapprove" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/img_shenpi"
+                android:layout_alignStart="@+id/img_shenpi"
+                android:layout_below="@+id/img_shenpi"
+                android:gravity="center"
+                android:text="任务审批" />
+
+
+            <ImageView
+                android:id="@+id/img_tongguo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignTop="@+id/img_shenpi"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/img_shenpi"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_tongguor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView16"
+                android:layout_alignBottom="@+id/textView16"
+                android:layout_alignEnd="@+id/img_tongguo"
+                android:layout_alignStart="@+id/img_tongguo"
+                android:gravity="center"
+                android:text="通过审批" />
+
+            <ImageView
+                android:id="@+id/img_fabu"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignTop="@+id/img_tongguo"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/img_tongguo"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_fabu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/img_fabu"
+                android:layout_alignStart="@+id/img_fabu"
+                android:layout_below="@+id/img_fabu"
+                android:gravity="center"
+                android:text="发布任务" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView4"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardView3"
+        android:layout_alignStart="@+id/cardView3"
+        android:layout_alignEnd="@+id/cardView3"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="20dp"
+        app:cardElevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="22dp"
+                android:text="其他工具"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+
+            <ImageView
+                android:id="@+id/img_fufen"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignStart="@+id/textView17"
+                android:layout_below="@+id/textView17"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_fufen" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/img_fufen"
+                android:layout_alignStart="@+id/img_fufen"
+                android:layout_below="@+id/img_fufen"
+                android:gravity="center"
+                android:text="福分商城" />
+
+            <ImageView
+                android:id="@+id/img_luntan"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignTop="@+id/img_fufen"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/img_fufen"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_forum" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/img_luntan"
+                android:layout_alignStart="@+id/img_luntan"
+                android:layout_below="@+id/img_luntan"
+                android:gravity="center"
+                android:text="内部论坛" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/cardView4"
+                android:layout_width="match_parent"
+                android:text="--我是有底线的--"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

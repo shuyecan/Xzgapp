@@ -12,7 +12,6 @@ import xiangzhigou.com.R;
 public class HomeFragment extends android.app.Fragment{
 
     private View fragment_home;
-
     @Override
     public void onStart() {
         super.onStart();
@@ -26,7 +25,6 @@ public class HomeFragment extends android.app.Fragment{
     }
 
     private void initMyData() {
-
     }
 
     private void initMyView() {
