@@ -108,24 +108,6 @@ public class RankingFragment extends android.app.Fragment{
         super.onViewCreated(view, savedInstanceState);
         initMyView();
     }
-   /*
-   *@作者:舒椰
-   *@date: 2018/8/3 15:44
-   * 一下方法可以将状态栏背景设置为透明
-   */
-
-//    @TargetApi(19)
-//    private void setTranslucentStatus(boolean on) {
-//        Window win = getActivity().getWindow();
-//        WindowManager.LayoutParams winParams = win.getAttributes();
-//        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-//        if (on) {
-//            winParams.flags |= bits;
-//        } else {
-//            winParams.flags &= ~bits;
-//        }
-//        win.setAttributes(winParams);
-//    }
 
     private void initMyView() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar_rank);
