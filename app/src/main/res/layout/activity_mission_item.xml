@@ -19,9 +19,10 @@
         android:layout_alignStart="@+id/img_mission"
         android:layout_below="@+id/img_mission"
         android:gravity="center"
-        android:text="麦立丰" />
+        android:text="" />
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/tv_mission_missionname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,24 +30,26 @@
         android:layout_marginStart="23dp"
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/img_mission"
-        android:text="麦立丰"
+        android:text=""
         android:textSize="20sp" />
 
     <TextView
+        android:textColor="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/tv_mission_missionname"
         android:layout_below="@+id/img_mission"
-        android:text="+3000"
+        android:text=""
         android:id="@+id/tv_mission_jia" />
 
     <TextView
+        android:textColor="@color/red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_mission"
         android:layout_marginStart="12dp"
         android:layout_toEndOf="@+id/tv_mission_jia"
-        android:text="+3000"
+        android:text=""
         android:id="@+id/tv_mission_jian" />
 
     <TextView
@@ -56,7 +59,7 @@
         android:layout_above="@+id/tv_mission_jian"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="8dp"
-        android:text="截止日期:2018-08-20" />
+        android:text="" />
 
     <TextView
         android:layout_width="wrap_content"

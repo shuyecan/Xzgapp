@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.been.Missionbeen;
 import com.been.Ranking;
@@ -40,6 +41,14 @@ public class MissionAp extends RecyclerView.Adapter<MissionAp.ViewHolder>{
         }
         View view = LayoutInflater.from(context).inflate(R.layout.activity_mission_item, parent, false);
         final MissionAp.ViewHolder holder = new MissionAp.ViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Missionbeen.ItemsBean missionbeen = Datalist.get(position);
+                Toast.makeText(context, missionbeen.getMissionId()+"", Toast.LENGTH_SHORT).show();
+            }
+        });
         return holder;
     }
 
@@ -50,9 +59,9 @@ public class MissionAp extends RecyclerView.Adapter<MissionAp.ViewHolder>{
         holder.Tv_name.setText(dataBean.getPublisher());
         holder.Tv_missionname.setText(dataBean.getMissionName());
         holder.Tv_id.setText(dataBean.getMissionId()+"");
-        holder.Tv_endDate.setText(dataBean.getEndDate());
+        holder.Tv_endDate.setText("截止至:"+dataBean.getEndDate());
         holder.Tv_jiafen.setText(dataBean.getAward()+"");
-        holder.Tv_jianfen.setText(dataBean.getDeduct()+"");
+        holder.Tv_jianfen.setText("-"+dataBean.getDeduct()+"");
         Glide.with(context).load(HeadListBean.getHeadImg()).placeholder( R.drawable.cuowu).dontAnimate().error( R.drawable.cuowu).into(holder.Img_head);
     }
 

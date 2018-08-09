@@ -1,10 +1,12 @@
 package Ui;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -49,10 +51,75 @@ import static android.content.Context.MODE_PRIVATE;
 public class MissionFragment extends android.app.Fragment{
     private String  user;
     private MissionAp adapter;
+    int missionid = 0;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private List<Missionbeen.ItemsBean> list = new ArrayList<>();
     private List<Missionbeen.ItemsBean.HeadImgBean> list2 = new ArrayList<>();
     private View fragment_mission;
     final MissionFragment.MyHandler handler= new MissionFragment.MyHandler(this);
+
+    public void getMission() {
+        SharedPreferences sp= getActivity().getSharedPreferences("abc",MODE_PRIVATE);
+        user=sp.getString("user","null");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                MediaType Json = MediaType.parse("application/json; charset=utf-8");
+                Map map=new HashMap();
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH)+1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                String date = year+"-"+month+"-"+day;
+                date = date+"/"+date;
+                map.put("rangeDate",date);
+                String  param= JSON.toJSONString(map);
+                RequestBody body = RequestBody.create(Json,param);
+                List<User> userList = DataSupport.select("token").where("username = ?",user).find(User.class);
+                Request request = new Request.Builder().addHeader("user-token",userList.get(0).getToken())
+                        .url("http://120.78.95.148/attendance/mission/part").post(body)
+                        .build();
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Message msg = new Message().obtain();
+                        msg.what = 3;
+                        handler.sendMessage(msg);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        try {
+                            String req = response.body().string();
+                            Gson gson = new Gson();
+                            Missionbeen missionbeen = gson.fromJson(req,Missionbeen.class);
+                            list = missionbeen.getItems();
+                            Log.d("==============date",req);
+                            if(missionid!=0&&missionid== list.get(list.size()-1).getMissionId()){
+                                return;
+                            }else if(missionid!=0){
+                                Log.d("diaodiao", "onResponse: ");
+                                adapter.notifyDataSetChanged();
+                            }
+                            missionid = list.get(list.size()-1).getMissionId();
+                            for (int i=0;i<list.size();i++){
+                                list2.add(list.get(i).getHeadImg());
+                            }
+                            Message msg = new Message().obtain();
+                            msg.what = 1;
+                            handler.sendMessage(msg);
+                        }catch (Exception e){
+                            Message msg = new Message().obtain();
+                            msg.what = 2;
+                            handler.sendMessage(msg);
+                        }
+                    }
+                });
+            }
+        }).start();
+    }
+
     class MyHandler extends Handler {
         private final WeakReference<MissionFragment> mActivity;
         public MyHandler(MissionFragment activity) {
@@ -98,62 +165,28 @@ public class MissionFragment extends android.app.Fragment{
     }
 
     private void initMyDate() {
-        SharedPreferences sp= getActivity().getSharedPreferences("abc",MODE_PRIVATE);
-        user=sp.getString("user","null");
+       getMission();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
+    }
+
+    private void refresh() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                OkHttpClient client = new OkHttpClient();
-                MediaType Json = MediaType.parse("application/json; charset=utf-8");
-                Map map=new HashMap();
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH)+1;
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                String date = year+"-"+month+"-"+day;
-                date = date+"/"+date;
-                map.put("rangeDate",date);
-                String  param= JSON.toJSONString(map);
-                RequestBody body = RequestBody.create(Json,param);
-                List<User> userList = DataSupport.select("token").where("username = ?",user).find(User.class);
-                Request request = new Request.Builder().addHeader("user-token",userList.get(0).getToken())
-                        .url("http://120.78.95.148/attendance/mission/part").post(body)
-                        .build();
-                client.newCall(request).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        Message msg = new Message().obtain();
-                        msg.what = 3;
-                        handler.sendMessage(msg);
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        try {
-                            String req = response.body().string();
-                            Gson gson = new Gson();
-                            Missionbeen missionbeen = gson.fromJson(req,Missionbeen.class);
-
-                            list = missionbeen.getItems();
-                            Log.d("==============date",req);
-                            for (int i=0;i<list.size();i++){
-                                list2.add(list.get(i).getHeadImg());
-                            }
-                            Message msg = new Message().obtain();
-                            msg.what = 1;
-                            handler.sendMessage(msg);
-                        }catch (Exception e){
-                            Message msg = new Message().obtain();
-                            msg.what = 2;
-                            handler.sendMessage(msg);
-                        }
-                    }
-                });
+                getMission();
+                swipeRefreshLayout.setRefreshing(false);
             }
         }).start();
     }
 
+    @SuppressLint("ResourceAsColor")
     private void initMyView() {
-
+        swipeRefreshLayout = getActivity().findViewById(R.id.swip_refresh_mission);
+        swipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary);
     }
 }
