@@ -40,7 +40,7 @@ dependencies {
     //litepal数据库
     implementation 'org.litepal.android:core:1.6.0'
     //腾讯qmui
-    implementation 'com.qmuiteam:qmui:1.1.3'
+//    implementation 'com.qmuiteam:qmui:1.1.3'
     //一个动画登录按钮
     implementation 'com.github.StevenDXC:DxLoadingButton:2.1'
     //gif图播放框架
