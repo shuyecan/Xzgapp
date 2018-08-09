@@ -18,17 +18,14 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.been.Missionbeen;
-import com.been.Ranking;
 import com.google.gson.Gson;
 
 import org.litepal.crud.DataSupport;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +38,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import other.MissionAp;
-
-import other.RankingAp;
 import other.User;
 import xiangzhigou.com.R;
 
@@ -94,21 +89,22 @@ public class MissionFragment extends android.app.Fragment{
                             String req = response.body().string();
                             Gson gson = new Gson();
                             Missionbeen missionbeen = gson.fromJson(req,Missionbeen.class);
-                            list = missionbeen.getItems();
-                            Log.d("==============date",req);
-                            if(missionid!=0&&missionid== list.get(list.size()-1).getMissionId()){
-                                return;
-                            }else if(missionid!=0){
-                                Log.d("diaodiao", "onResponse: ");
-                                adapter.notifyDataSetChanged();
+                            list.clear();
+                            list2.clear();
+                            if(missionid!=0&&missionid==missionbeen.getItems().get(0).getMissionId()){
+                                Message msg = new Message().obtain();
+                                msg.what = 4;
+                                handler.sendMessage(msg);
+                            }else {
+                                list.addAll(missionbeen.getItems());
+                                missionid = list.get(0).getMissionId();
+                                for (int i = 0; i < list.size(); i++) {
+                                    list2.add(list.get(i).getHeadImg());
+                                }
+                                Message msg = new Message().obtain();
+                                msg.what = 1;
+                                handler.sendMessage(msg);
                             }
-                            missionid = list.get(list.size()-1).getMissionId();
-                            for (int i=0;i<list.size();i++){
-                                list2.add(list.get(i).getHeadImg());
-                            }
-                            Message msg = new Message().obtain();
-                            msg.what = 1;
-                            handler.sendMessage(msg);
                         }catch (Exception e){
                             Message msg = new Message().obtain();
                             msg.what = 2;
@@ -130,18 +126,16 @@ public class MissionFragment extends android.app.Fragment{
             if(activity!=null){
                 switch (msg.what){
                     case 1:
-                        RecyclerView recyclerView = getActivity().findViewById(R.id.mission_recy);
-                        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
-                        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
-                        recyclerView.setLayoutManager(layoutManager);
-                        adapter = new MissionAp(list,list2);
-                        recyclerView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
                         break;
                     case 2:
                         Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
                         break;
                     case 3:
                         Toast.makeText(getActivity(), "错误", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Toast.makeText(getActivity(), "暂无数据更新", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -160,6 +154,12 @@ public class MissionFragment extends android.app.Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        RecyclerView recyclerView = getActivity().findViewById(R.id.mission_recy);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new MissionAp(list,list2);
+        recyclerView.setAdapter(adapter);
         initMyView();
         initMyDate();
     }
@@ -187,6 +187,6 @@ public class MissionFragment extends android.app.Fragment{
     @SuppressLint("ResourceAsColor")
     private void initMyView() {
         swipeRefreshLayout = getActivity().findViewById(R.id.swip_refresh_mission);
-        swipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary);
+        swipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary,R.color.red);
     }
 }

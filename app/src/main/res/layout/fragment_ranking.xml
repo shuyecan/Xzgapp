@@ -52,6 +52,6 @@
         android:id="@+id/flo_button"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_assessment_white_24dp"
+        android:src="@drawable/ic_equalizer_white_24dp"
         app:elevation="8dp"/>
 </android.support.design.widget.CoordinatorLayout>

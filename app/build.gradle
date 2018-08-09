@@ -44,8 +44,8 @@ dependencies {
     //一个动画登录按钮
     implementation 'com.github.StevenDXC:DxLoadingButton:2.1'
     //gif图播放框架
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     //沉浸式背景可下拉
-    compile 'com.github.todou:appbarspring:1.0.6'
+    implementation 'com.github.todou:appbarspring:1.0.6'
     //    implementation 'com.airbnb.android:lottie:2.5.5'
 }
