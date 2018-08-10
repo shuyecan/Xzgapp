@@ -30,6 +30,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.ScaleInAnimator;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -52,6 +54,82 @@ public class MissionFragment extends android.app.Fragment{
     private List<Missionbeen.ItemsBean.HeadImgBean> list2 = new ArrayList<>();
     private View fragment_mission;
     final MissionFragment.MyHandler handler= new MissionFragment.MyHandler(this);
+    class MyHandler extends Handler {
+        private final WeakReference<MissionFragment> mActivity;
+        public MyHandler(MissionFragment activity) {
+            mActivity=new WeakReference<MissionFragment>(activity);
+        }
+        public void handleMessage(android.os.Message msg) {
+            MissionFragment activity=mActivity.get();
+            if(activity!=null){
+                switch (msg.what){
+                    case 1:
+                        adapter.notifyDataSetChanged();
+                        break;
+                    case 2:
+                        Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        Toast.makeText(getActivity(), "错误", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Toast.makeText(getActivity(), "暂无数据更新", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+    };
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        if ( fragment_mission == null) {
+            fragment_mission = inflater.inflate(R.layout.fragment_mission,
+                    container, false);
+            return  fragment_mission;
+        }
+        return  fragment_mission;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        RecyclerView recyclerView = getActivity().findViewById(R.id.mission_recy);
+        recyclerView.setItemAnimator(new ScaleInAnimator());
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new MissionAp(list,list2);
+        recyclerView.setAdapter(new AlphaInAnimationAdapter(adapter));
+        initMyView();
+        initMyDate();
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private void initMyView() {
+
+        swipeRefreshLayout = getActivity().findViewById(R.id.swip_refresh_mission);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,R.color.red);
+    }
+
+    private void initMyDate() {
+       getMission();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
+    }
+
+    private void refresh() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getMission();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }).start();
+    }
 
     public void getMission() {
         SharedPreferences sp= getActivity().getSharedPreferences("abc",MODE_PRIVATE);
@@ -89,13 +167,13 @@ public class MissionFragment extends android.app.Fragment{
                             String req = response.body().string();
                             Gson gson = new Gson();
                             Missionbeen missionbeen = gson.fromJson(req,Missionbeen.class);
-                            list.clear();
-                            list2.clear();
                             if(missionid!=0&&missionid==missionbeen.getItems().get(0).getMissionId()){
                                 Message msg = new Message().obtain();
                                 msg.what = 4;
                                 handler.sendMessage(msg);
                             }else {
+                                list.clear();
+                                list2.clear();
                                 list.addAll(missionbeen.getItems());
                                 missionid = list.get(0).getMissionId();
                                 for (int i = 0; i < list.size(); i++) {
@@ -114,79 +192,5 @@ public class MissionFragment extends android.app.Fragment{
                 });
             }
         }).start();
-    }
-
-    class MyHandler extends Handler {
-        private final WeakReference<MissionFragment> mActivity;
-        public MyHandler(MissionFragment activity) {
-            mActivity=new WeakReference<MissionFragment>(activity);
-        }
-        public void handleMessage(android.os.Message msg) {
-            MissionFragment activity=mActivity.get();
-            if(activity!=null){
-                switch (msg.what){
-                    case 1:
-                        adapter.notifyDataSetChanged();
-                        break;
-                    case 2:
-                        Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        Toast.makeText(getActivity(), "错误", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 4:
-                        Toast.makeText(getActivity(), "暂无数据更新", Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
-        };
-    };
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        if ( fragment_mission == null) {
-            fragment_mission = inflater.inflate(R.layout.fragment_mission,
-                    container, false);
-            return  fragment_mission;
-        }
-        return  fragment_mission;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = getActivity().findViewById(R.id.mission_recy);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new MissionAp(list,list2);
-        recyclerView.setAdapter(adapter);
-        initMyView();
-        initMyDate();
-    }
-
-    private void initMyDate() {
-       getMission();
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refresh();
-            }
-        });
-    }
-
-    private void refresh() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                getMission();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        }).start();
-    }
-
-    @SuppressLint("ResourceAsColor")
-    private void initMyView() {
-        swipeRefreshLayout = getActivity().findViewById(R.id.swip_refresh_mission);
-        swipeRefreshLayout.setColorSchemeColors(R.color.colorPrimary,R.color.red);
     }
 }

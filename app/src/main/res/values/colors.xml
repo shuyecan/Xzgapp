@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#4F8DFE</color>
     <color name="colorPrimaryDark">#4F8DFE</color>
-    <color name="colorAccent">#4F8DFE</color>
+    <color name="colorAccent">#FF4081</color>
     <!--#FF4081-->
     <color name="Login_back">#4F8DFE</color>
     <color name="color_tab1">#4F8DFE</color>

@@ -30,8 +30,8 @@ public class MissionAp extends RecyclerView.Adapter<MissionAp.ViewHolder>{
     private List<Missionbeen.ItemsBean> Datalist;
     private List<Missionbeen.ItemsBean.HeadImgBean> headImgBeanListlist;
     public MissionAp(List<Missionbeen.ItemsBean> data_list,List<Missionbeen.ItemsBean.HeadImgBean> head_list) {
-        Datalist = data_list;
-        headImgBeanListlist = head_list;
+        this.Datalist = data_list;
+        this.headImgBeanListlist = head_list;
     }
     @NonNull
     @Override
@@ -45,8 +45,10 @@ public class MissionAp extends RecyclerView.Adapter<MissionAp.ViewHolder>{
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Missionbeen.ItemsBean missionbeen = Datalist.get(position);
-                Toast.makeText(context, missionbeen.getMissionId()+"", Toast.LENGTH_SHORT).show();
+                if(Datalist!=null&&Datalist.size()>0){
+                    Missionbeen.ItemsBean missionbeen = Datalist.get(position);
+                    Toast.makeText(context, missionbeen.getMissionId()+"", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return holder;

@@ -48,4 +48,5 @@ dependencies {
     //沉浸式背景可下拉
     implementation 'com.github.todou:appbarspring:1.0.6'
     //    implementation 'com.airbnb.android:lottie:2.5.5'
+    implementation 'jp.wasabeef:recyclerview-animators:2.3.0'
 }

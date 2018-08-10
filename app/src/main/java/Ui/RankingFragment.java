@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.ScaleInAnimator;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -68,11 +70,12 @@ public class RankingFragment extends android.app.Fragment{
                 switch (msg.what){
                     case 1:
                         RecyclerView recyclerView = getActivity().findViewById(R.id.RecyclerView);
+                        recyclerView.setItemAnimator(new ScaleInAnimator());
                         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
                         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
                         recyclerView.setLayoutManager(layoutManager);
                         adapter = new RankingAp(list,list2);
-                        recyclerView.setAdapter(adapter);
+                        recyclerView.setAdapter(new AlphaInAnimationAdapter(adapter));
                         break;
                     case 2:
                         Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();

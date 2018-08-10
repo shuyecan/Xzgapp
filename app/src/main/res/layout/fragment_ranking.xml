@@ -47,7 +47,6 @@
             </android.support.v7.widget.RecyclerView>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
-        android:backgroundTint="#FF4081"
         android:layout_height="wrap_content"
         android:id="@+id/flo_button"
         android:layout_gravity="bottom|end"

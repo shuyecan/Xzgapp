@@ -32,6 +32,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.ScaleInAnimator;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -70,7 +72,7 @@ public class Ranksbycompany extends AppCompatActivity {
                         rankRecycler.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
                         rankRecycler.setLayoutManager(layoutManager);
                         adapter = new RankcompanyAp(list, list2);
-                        rankRecycler.setAdapter(adapter);
+                        rankRecycler.setAdapter(new AlphaInAnimationAdapter(adapter));
                         break;
                     case 2:
                         Toast.makeText(activity, "失败", Toast.LENGTH_SHORT).show();
@@ -155,6 +157,8 @@ public class Ranksbycompany extends AppCompatActivity {
 
     private void initView() {
         rankRecycler = findViewById(R.id.rankRecycler);
+
+        rankRecycler.setItemAnimator(new ScaleInAnimator());
         Toolbar toolbar = findViewById(R.id.toolbar_companyranks);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
