@@ -7,9 +7,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,7 +99,13 @@ public class MissionFragment extends android.app.Fragment{
         RecyclerView recyclerView = getActivity().findViewById(R.id.mission_recy);
         recyclerView.setItemAnimator(new ScaleInAnimator());
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),1);
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
+        /*
+        *@作者:舒椰
+        *@date: 2018/8/10 18:11
+        * 绘制分割线
+        */
+
+//        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MissionAp(list,list2);
         recyclerView.setAdapter(new AlphaInAnimationAdapter(adapter));
@@ -106,7 +115,13 @@ public class MissionFragment extends android.app.Fragment{
 
     @SuppressLint("ResourceAsColor")
     private void initMyView() {
-
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar_mission);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ActionBar actionBar =  ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if(actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.mipmap.mian);
+        }
         swipeRefreshLayout = getActivity().findViewById(R.id.swip_refresh_mission);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,R.color.red);
     }

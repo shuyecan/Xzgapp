@@ -60,6 +60,16 @@ public class Missionbeen {
         private String endDate;
         private HeadImgBean headImg;
         private int missionId;
+        private int status;
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
         private String missionName;
         private String publisher;
 

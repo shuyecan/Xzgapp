@@ -1,69 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="2.5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="2.5dp"
+    app:cardCornerRadius="4dp"
+   app:contentPadding="5dp"
     android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img_mission"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/tv_mission_missionname"
-        android:layout_marginStart="17dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_mission_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/img_mission"
-        android:layout_alignStart="@+id/img_mission"
-        android:layout_below="@+id/img_mission"
-        android:gravity="center"
-        android:text="" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_mission"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/tv_mission_missionname"
+            android:layout_marginStart="17dp" />
 
-    <TextView
-        android:textStyle="bold"
-        android:id="@+id/tv_mission_missionname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/img_mission"
-        android:text=""
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/tv_mission_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/img_mission"
+            android:layout_alignStart="@+id/img_mission"
+            android:layout_below="@+id/img_mission"
+            android:gravity="center"
+            android:text="sss" />
 
-    <TextView
-        android:textColor="@color/colorAccent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tv_mission_missionname"
-        android:layout_below="@+id/img_mission"
-        android:text=""
-        android:id="@+id/tv_mission_jia" />
+        <TextView
+            android:id="@+id/tv_mission_missionname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/img_mission"
+            android:text=""
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:textColor="@color/red"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/img_mission"
-        android:layout_marginStart="12dp"
-        android:layout_toEndOf="@+id/tv_mission_jia"
-        android:text=""
-        android:id="@+id/tv_mission_jian" />
+        <TextView
+            android:id="@+id/tv_mission_jia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tv_mission_missionname"
+            android:layout_below="@+id/img_mission"
+            android:text=""
+            android:textColor="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/tv_mission_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tv_mission_jian"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="8dp"
-        android:text="" />
+        <TextView
+            android:id="@+id/tv_mission_jian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_mission"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@+id/tv_mission_jia"
+            android:text=""
+            android:textColor="@color/red" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:id="@+id/tv_mission_id"
-        android:layout_height="wrap_content" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_mission_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_mission_jian"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/mission_stuts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_mission_missionname"
+            android:layout_alignEnd="@+id/tv_mission_date" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
